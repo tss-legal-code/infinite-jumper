@@ -14,20 +14,6 @@ window.addEventListener('load', function () {
 		}
 	});
 
-	game.scene.add("Preload", Preload);
+	game.scene.add("Preload", Preload, true);
 	game.scene.add("Level", Level);
-	game.scene.add("Boot", Boot, true);
 });
-
-class Boot extends Phaser.Scene {
-
-	preload() {
-		
-		this.load.pack("pack", "assets/preload-asset-pack.json");
-	}
-
-	create() {
-
-		this.scene.start("Preload");
-	}
-}
