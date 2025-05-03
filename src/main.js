@@ -4,13 +4,21 @@ import Preload from "./scenes/Preload.js";
 window.addEventListener('load', function () {
 
 	var game = new Phaser.Game({
-		width: 1280,
-		height: 720,
+		width: 240,
+		height: 176,
 		type: Phaser.AUTO,
         backgroundColor: "#242424",
 		scale: {
 			mode: Phaser.Scale.FIT,
 			autoCenter: Phaser.Scale.CENTER_BOTH
+		},
+		pixelArt: true,
+		physics: {
+			default: 'arcade',
+			arcade: {
+				gravity: { y: 0 },
+				debug: 0,
+			},
 		}
 	});
 
