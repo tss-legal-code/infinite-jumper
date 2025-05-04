@@ -10,6 +10,10 @@ import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import LaunchSceneActionScript from "../scriptnodes/scene/LaunchSceneActionScript.js";
+import TimeEventActionScript from "../scriptnodes/timer/TimeEventActionScript.js";
+import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
+import StartSceneActionScript from "../scriptnodes/scene/StartSceneActionScript.js";
+import StopSceneActionScript from "../scriptnodes/scene/StopSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -75,6 +79,18 @@ export default class Level extends Phaser.Scene {
 		// launchSceneActionScript
 		const launchSceneActionScript = new LaunchSceneActionScript(onAwakeActionScript);
 
+		// timeEventActionScriptForSceneTransition
+		const timeEventActionScriptForSceneTransition = new TimeEventActionScript(this);
+
+		// fadeEffectCameraActionScript
+		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(timeEventActionScriptForSceneTransition);
+
+		// startSceneActionScript
+		const startSceneActionScript = new StartSceneActionScript(fadeEffectCameraActionScript);
+
+		// stopSceneActionScript
+		const stopSceneActionScript = new StopSceneActionScript(timeEventActionScriptForSceneTransition);
+
 		// lists
 		const movingLevelTileSprites = [rightWall, leftWall, foregroundPrefab];
 		const walls = [rightWall, leftWall];
@@ -91,8 +107,19 @@ export default class Level extends Phaser.Scene {
 		// launchSceneActionScript (prefab fields)
 		launchSceneActionScript.sceneKey = "UI";
 
+		// fadeEffectCameraActionScript (prefab fields)
+		fadeEffectCameraActionScript.duration = 500;
+		fadeEffectCameraActionScript.fadeEvent = "camerafadeoutcomplete";
+
+		// startSceneActionScript (prefab fields)
+		startSceneActionScript.sceneKey = "GameOver";
+
+		// stopSceneActionScript (prefab fields)
+		stopSceneActionScript.sceneKey = "UI";
+
 		this.player = player;
 		this.platformGroupPrefab = platformGroupPrefab;
+		this.timeEventActionScriptForSceneTransition = timeEventActionScriptForSceneTransition;
 		this.leftKeyboardKey = leftKeyboardKey;
 		this.rightKeyboardKey = rightKeyboardKey;
 		this.movingLevelTileSprites = movingLevelTileSprites;
@@ -105,6 +132,8 @@ export default class Level extends Phaser.Scene {
 	player;
 	/** @type {PlatformGroupPrefab} */
 	platformGroupPrefab;
+	/** @type {TimeEventActionScript} */
+	timeEventActionScriptForSceneTransition;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	leftKeyboardKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
@@ -266,9 +295,8 @@ export default class Level extends Phaser.Scene {
 			onComplete: () => {
 				this.player.body.enable = false;
 				this.registry.set('score', this.currentScore);
-				this.scene.stop('UI');
-				this.scene.start('GameOver');
-				// console.log("GAME OVER!")
+				console.log("GAME OVER!", this.currentScore);
+				this.timeEventActionScriptForSceneTransition.execute();
 			}
 		})
 	}
