@@ -30,7 +30,7 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 		this.lowestPlatformY = 0;
 		this.highestPlatformY = 0;
 
-		this.enablePlatformMovement = false;
+		this.isPlatformMovementEnabled = false;
 
 		this.initPlatforms();
 		/* END-USER-CTR-CODE */
@@ -51,7 +51,7 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 	highestPlatformY
 
 	/** @type boolean */
-	enablePlatformMovement = false;
+	isPlatformMovementEnabled = false;
 
 	update(){
 		const scrollY = this.scene.cameras.main.scrollY;
@@ -76,10 +76,14 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 			this.highestPlatformY -= this.getRandomY();
 			child.y = this.highestPlatformY;
 
-			if (this.enablePlatformMovement) {
+			if (this.isPlatformMovementEnabled) {
 				this.randomlyStartMovingPlatforms(child)
 			}
 		})
+	}
+
+	enablePlatformMovement() {
+		this.isPlatformMovementEnabled = true
 	}
 
 	randomlyStartMovingPlatforms(child) {

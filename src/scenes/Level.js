@@ -108,7 +108,7 @@ export default class Level extends Phaser.Scene {
 
 	/** @type Boolean */
 	firstJumpMade
-
+	level = 0;
 	isGameOver = false;
 	currentScore = 0;
 	maxHeight = 0;
@@ -123,6 +123,10 @@ export default class Level extends Phaser.Scene {
 		this.currentScore = 0;
 		this.maxHeight = 0;
 		this.startingMaxheight = 0;
+		this.level = 0;
+		this.levels = {
+			0: 70,
+		}
 	}
 
 	update(){
@@ -170,6 +174,15 @@ export default class Level extends Phaser.Scene {
 		this.maxHeight = distance;
 		this.currentScore = Math.floor((this.maxHeight - this.startingMaxheight) / 10);
 		this.scene.get('UI').updateScoreText(this.currentScore);
+
+		this.updateLevel();
+	}
+
+	updateLevel() {
+		if (this.level === 0 && this.currentScore > this.levels[this.level]) {
+			this.platformGroupPrefab.enablePlatformMovement();
+			this.level = 1;
+		}
 	}
 
 	handleFirstJump() {
