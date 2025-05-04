@@ -71,7 +71,7 @@ export default class Level extends Phaser.Scene {
 	update(){
 		const isTouchingDown = this.player.body.touching.down
 		if (isTouchingDown) {
-			this.handlePlayerTouchDown()
+			this.handleLanding()
 			if (!this.firstJumpMade) {
 				this.firstJumpMade = true;
 			}
@@ -86,15 +86,22 @@ export default class Level extends Phaser.Scene {
 		}
 	}
 
-	handlePlayerTouchDown(){
+	handleLanding(){
+		this.player.play('playerJump')
+		this.player.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + 'playerJump', () => {
+			this.player.play('playerSpin')
+		});
+
 		this.player.setVelocityY(-this.jumpVelocity)
 	}
 
 	handleMoveLeft() {
+		this.player.setFlipX(true);
 		this.player.setVelocityX(-this.sideVelocity)
 	}
 
 	handleMoveRIght(){
+		this.player.setFlipX(false);
 		this.player.setVelocityX(this.sideVelocity)
 	}
 

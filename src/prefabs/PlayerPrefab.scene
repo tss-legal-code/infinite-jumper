@@ -20,6 +20,9 @@
                 "key": "player",
                 "frame": "player-idle-1.png"
             },
+            "animationPlayMethod": 1,
+            "animationKey": "playerIdle",
+            "animationPreview": true,
             "up": false,
             "left": false,
             "right": false,
