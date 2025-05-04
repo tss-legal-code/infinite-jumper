@@ -3,6 +3,8 @@
 
 /* START OF COMPILED CODE */
 
+import BackgroundPrefab from "../prefabs/BackgroundPrefab.js";
+import ForegroundPrefab from "../prefabs/ForegroundPrefab.js";
 import WallPrefab from "../prefabs/WallPrefab.js";
 import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
@@ -38,6 +40,14 @@ export default class Level extends Phaser.Scene {
 		// levelLayer
 		const levelLayer = this.add.layer();
 
+		// backgroundPrefab
+		const backgroundPrefab = new BackgroundPrefab(this, 0, 0);
+		levelLayer.add(backgroundPrefab);
+
+		// foregroundPrefab
+		const foregroundPrefab = new ForegroundPrefab(this, 0, 0);
+		levelLayer.add(foregroundPrefab);
+
 		// leftWall
 		const leftWall = new WallPrefab(this, 0, 0);
 		levelLayer.add(leftWall);
@@ -66,7 +76,7 @@ export default class Level extends Phaser.Scene {
 		const launchSceneActionScript = new LaunchSceneActionScript(onAwakeActionScript);
 
 		// lists
-		const movingLevelTileSprites = [rightWall, leftWall];
+		const movingLevelTileSprites = [rightWall, leftWall, foregroundPrefab];
 		const walls = [rightWall, leftWall];
 
 		// playerWithPlatformsCollider
@@ -99,7 +109,7 @@ export default class Level extends Phaser.Scene {
 	leftKeyboardKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	rightKeyboardKey;
-	/** @type {WallPrefab[]} */
+	/** @type {Array<WallPrefab|ForegroundPrefab>} */
 	movingLevelTileSprites;
 	/** @type {WallPrefab[]} */
 	walls;
@@ -215,7 +225,7 @@ export default class Level extends Phaser.Scene {
 
 	updateSpites(){
 		this.movingLevelTileSprites.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.player.y * 0.2 + tileSprite.tileOffsetY;
+			tileSprite.tilePositionY = this.player.y * 0.2 + (tileSprite.tileOffsetY || 0);
 		})
 	}
 

@@ -19,6 +19,28 @@
             "displayName": "Level Layer",
             "list": [
                 {
+                    "prefabId": "13c1e742-2919-468d-bd37-8673440ce531",
+                    "id": "5981ca7b-2aa4-4b8c-9e40-4d8710d098b2",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "backgroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "97cfafd1-7002-4758-b24b-d1f5de583d20",
+                    "id": "a514cced-1e4f-43e9-9f52-cb835dee56dd",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "foregroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
                     "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
                     "id": "3a963f8c-ba47-43f1-858c-9c4799fb115e",
                     "unlock": [
@@ -136,7 +158,8 @@
             "label": "movingLevelTileSprites",
             "objectIds": [
                 "59f7da16-5c01-4f8c-988e-fef9fb033823",
-                "3a963f8c-ba47-43f1-858c-9c4799fb115e"
+                "3a963f8c-ba47-43f1-858c-9c4799fb115e",
+                "a514cced-1e4f-43e9-9f52-cb835dee56dd"
             ]
         },
         {
