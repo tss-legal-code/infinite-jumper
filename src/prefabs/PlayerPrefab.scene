@@ -21,6 +21,8 @@
                 "frame": "player-idle-1.png"
             },
             "up": false,
+            "left": false,
+            "right": false,
             "body.width": 11,
             "body.height": 44,
             "body.offset.x": 35,

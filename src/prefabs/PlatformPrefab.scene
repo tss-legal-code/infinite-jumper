@@ -21,6 +21,9 @@
             "scaleX": 0.75,
             "scaleY": 0.5,
             "allowGravity": false,
+            "down": false,
+            "left": false,
+            "right": false,
             "pushable": false,
             "body.width": 80,
             "body.height": 16
