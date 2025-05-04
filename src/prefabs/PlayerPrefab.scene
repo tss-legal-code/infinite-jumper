@@ -22,7 +22,6 @@
             },
             "animationPlayMethod": 1,
             "animationKey": "playerIdle",
-            "animationPreview": true,
             "up": false,
             "body.width": 11,
             "body.height": 44,

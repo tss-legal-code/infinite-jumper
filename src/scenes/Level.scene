@@ -13,27 +13,10 @@
     },
     "displayList": [
         {
-            "prefabId": "6fb2c25a-1e98-4863-b96f-bc5b9206fa9e",
-            "id": "3a016066-4f8b-4a3c-906f-7b843b88ccc6",
-            "label": "platformGroupPrefab"
-        },
-        {
-            "prefabId": "d92f7804-eabd-4759-b138-51560a92f89b",
-            "id": "e6e24eef-c27e-45c1-9d52-101ad304d260",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "player",
-            "displayName": "Player",
-            "scope": "CLASS",
-            "x": 113,
-            "y": 77
-        },
-        {
             "type": "Layer",
             "id": "884470fe-16d4-4488-84c6-ead3a19865d5",
             "label": "levelLayer",
+            "displayName": "Level Layer",
             "list": [
                 {
                     "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
@@ -64,6 +47,32 @@
                     "flipY": false
                 }
             ]
+        },
+        {
+            "type": "Layer",
+            "id": "f1f5d43d-0272-42e2-bcb9-1d84a1df1474",
+            "label": "playerLayer",
+            "displayName": "Player Layer",
+            "list": [
+                {
+                    "prefabId": "d92f7804-eabd-4759-b138-51560a92f89b",
+                    "id": "e6e24eef-c27e-45c1-9d52-101ad304d260",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "player",
+                    "displayName": "Player",
+                    "scope": "CLASS",
+                    "x": 120,
+                    "y": 77
+                }
+            ]
+        },
+        {
+            "prefabId": "6fb2c25a-1e98-4863-b96f-bc5b9206fa9e",
+            "id": "3a016066-4f8b-4a3c-906f-7b843b88ccc6",
+            "label": "platformGroupPrefab"
         }
     ],
     "plainObjects": [
@@ -93,5 +102,15 @@
         "url": "https://phaser.io/editor",
         "contentType": "phasereditor2d.core.scene.SceneContentType",
         "version": 5
-    }
+    },
+    "lists": [
+        {
+            "id": "db344dd0-ea28-492f-b9e8-208f2fa8aa1f",
+            "label": "movingLevelTileSprites",
+            "objectIds": [
+                "59f7da16-5c01-4f8c-988e-fef9fb033823",
+                "3a963f8c-ba47-43f1-858c-9c4799fb115e"
+            ]
+        }
+    ]
 }

@@ -3,9 +3,9 @@
 
 /* START OF COMPILED CODE */
 
-import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
-import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import WallPrefab from "../prefabs/WallPrefab.js";
+import PlayerPrefab from "../prefabs/PlayerPrefab.js";
+import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -33,14 +33,6 @@ export default class Level extends Phaser.Scene {
 		// rightKeyboardKey
 		const rightKeyboardKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
-		// platformGroupPrefab
-		const platformGroupPrefab = new PlatformGroupPrefab(this);
-		this.add.existing(platformGroupPrefab);
-
-		// player
-		const player = new PlayerPrefab(this, 113, 77);
-		this.add.existing(player);
-
 		// levelLayer
 		const levelLayer = this.add.layer();
 
@@ -54,12 +46,27 @@ export default class Level extends Phaser.Scene {
 		rightWall.flipY = false;
 		levelLayer.add(rightWall);
 
+		// playerLayer
+		const playerLayer = this.add.layer();
+
+		// player
+		const player = new PlayerPrefab(this, 120, 77);
+		playerLayer.add(player);
+
+		// platformGroupPrefab
+		const platformGroupPrefab = new PlatformGroupPrefab(this);
+		this.add.existing(platformGroupPrefab);
+
+		// lists
+		const movingLevelTileSprites = [rightWall, leftWall];
+
 		// playerWithPlatformsCollider
 		this.physics.add.collider(player, platformGroupPrefab.group);
 
 		this.player = player;
 		this.leftKeyboardKey = leftKeyboardKey;
 		this.rightKeyboardKey = rightKeyboardKey;
+		this.movingLevelTileSprites = movingLevelTileSprites;
 
 		this.events.emit("scene-awake");
 	}
@@ -70,6 +77,8 @@ export default class Level extends Phaser.Scene {
 	leftKeyboardKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	rightKeyboardKey;
+	/** @type {WallPrefab[]} */
+	movingLevelTileSprites;
 
 	/* START-USER-CODE */
 
@@ -98,6 +107,8 @@ export default class Level extends Phaser.Scene {
 				this.handleNoSideMove();
 			}
 		}
+
+		this.updateTileSprites();
 	}
 
 	handleLanding(){
@@ -122,6 +133,13 @@ export default class Level extends Phaser.Scene {
 	handleNoSideMove(){
 		this.player.setVelocityX(0)
 	}
+
+	updateTileSprites(){
+		this.movingLevelTileSprites.forEach((tileSprite) => {
+			tileSprite.tilePositionY = this.player.y * 0.2;
+		})
+	}
+	
 
 	/* END-USER-CODE */
 }
