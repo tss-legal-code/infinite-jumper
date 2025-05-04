@@ -18,9 +18,10 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 		this.group = scene.add.group({
 			classType: PlatformPrefab,
 			// maxSize: 30
+			runChildUpdate: true,
 		})
 
-		this.platfowmMinX = 50;
+		this.platfowmMinX = 10;
 		this.platfowmMaxX = 200;
 		this.platfowmMinOffsetY = 100;
 		this.platfowmMaxOffsetY = 140;
@@ -28,6 +29,8 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 		this.maxPlatformDistance = scene.scale.height * 3;
 		this.lowestPlatformY = 0;
 		this.highestPlatformY = 0;
+
+		this.enablePlatformMovement = false;
 
 		this.initPlatforms();
 		/* END-USER-CTR-CODE */
@@ -46,6 +49,9 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 
 	/** @type number */
 	highestPlatformY
+
+	/** @type boolean */
+	enablePlatformMovement = false;
 
 	update(){
 		const scrollY = this.scene.cameras.main.scrollY;
@@ -69,7 +75,19 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 			child.x = this.getRandomX();
 			this.highestPlatformY -= this.getRandomY();
 			child.y = this.highestPlatformY;
+
+			if (this.enablePlatformMovement) {
+				this.randomlyStartMovingPlatforms(child)
+			}
 		})
+	}
+
+	randomlyStartMovingPlatforms(child) {
+		if (Phaser.Math.RND.between(0,1) === 1) {
+			child.startPlatformMovement();
+		} else {
+			child.stopPlatformMovement();
+		}
 	}
 
 	getRandomX(){

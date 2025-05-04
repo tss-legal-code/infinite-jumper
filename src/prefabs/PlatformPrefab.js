@@ -22,13 +22,49 @@ export default class PlatformPrefab extends Phaser.Physics.Arcade.Image {
 		this.body.setSize(80, 16, false);
 
 		/* START-USER-CTR-CODE */
-		// Write your code here.
+		this.horizontalVelocity = 50;
+		this.platformMinX = 10;
+		this.platformMaxX = 200;
+		this.enablePlatformMovement = false;
+
+
 		/* END-USER-CTR-CODE */
 	}
 
 	/* START-USER-CODE */
 
 	// Write your code here.
+
+	/** @type number */
+	horizontalVelocity
+	/** @type number */
+	platformMinX
+	/** @type number */
+	platformMaxX
+	/** @type boolean */
+	enablePlatformMovement
+	
+	update() {
+		if (!this.enablePlatformMovement) {
+			return
+		}
+		
+		if (this.x < this.platformMinX) {
+			this.body.velocity.x = this.horizontalVelocity;
+		} else if (this.x > this.platformMaxX) {
+			this.body.velocity.x = -this.horizontalVelocity;
+		}
+	}
+
+	startPlatformMovement(){
+		this.body.velocity.x = this.horizontalVelocity;
+		this.enablePlatformMovement = true;
+	}
+
+	stopPlatformMovement(){
+		this.body.velocity.x = 0;
+		this.enablePlatformMovement = false;
+	}
 
 	/* END-USER-CODE */
 }
