@@ -50,7 +50,7 @@ export default class Level extends Phaser.Scene {
 		const playerLayer = this.add.layer();
 
 		// player
-		const player = new PlayerPrefab(this, 120, 77);
+		const player = new PlayerPrefab(this, 120, -64);
 		playerLayer.add(player);
 
 		// platformGroupPrefab
@@ -98,15 +98,19 @@ export default class Level extends Phaser.Scene {
 	/** @type Boolean */
 	firstJumpMade
 
+	isGameOver = false;
+
 	create() {
 		this.editorCreate();
 		this.cameras.main.startFollow(this.player, false, 0.1, 1, 0.1);
 		this.cameras.main.setDeadzone(this.scale.width);
 		this.firstJumpMade = false;
+		this.isGameOver = false;
 	}
 
 	update(){
-		const isTouchingDown = this.player.body.touching.down
+		const isTouchingDown = this.player.body.touching.down;
+
 		if (isTouchingDown) {
 			this.handleLanding()
 			if (!this.firstJumpMade) {
@@ -125,6 +129,8 @@ export default class Level extends Phaser.Scene {
 		this.updateSpites();
 		this.updateWalls();
 		this.reusePlatforms();
+
+		this.gameOverConditionCheck();
 	}
 
 	handleLanding(){
@@ -166,6 +172,21 @@ export default class Level extends Phaser.Scene {
 
 	reusePlatforms(){
 		this.platformGroupPrefab.update();
+	}
+
+	gameOverConditionCheck(){
+		if (this.isGameOver) {
+			this.player.setVelocityY(15);
+			return
+		}
+
+		const isPlayerTooLow = this.player.y > this.platformGroupPrefab.lowestPlatformY;
+
+		if (isPlayerTooLow) {
+			this.isGameOver = true;
+			this.player.setVelocityY(15);
+			this.player.play('playerHurt');
+		}
 	}
 
 
