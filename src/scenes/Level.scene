@@ -29,6 +29,41 @@
             "scope": "CLASS",
             "x": 113,
             "y": 77
+        },
+        {
+            "type": "Layer",
+            "id": "884470fe-16d4-4488-84c6-ead3a19865d5",
+            "label": "levelLayer",
+            "list": [
+                {
+                    "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
+                    "id": "3a963f8c-ba47-43f1-858c-9c4799fb115e",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "leftWall",
+                    "displayName": "Left Wall",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
+                    "id": "59f7da16-5c01-4f8c-988e-fef9fb033823",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "flipX",
+                        "flipY"
+                    ],
+                    "label": "rightWall",
+                    "displayName": "RIght Wall",
+                    "x": 208,
+                    "y": 0,
+                    "flipX": true,
+                    "flipY": false
+                }
+            ]
         }
     ],
     "plainObjects": [

@@ -5,6 +5,7 @@
 
 import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
 import PlayerPrefab from "../prefabs/PlayerPrefab.js";
+import WallPrefab from "../prefabs/WallPrefab.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -39,6 +40,19 @@ export default class Level extends Phaser.Scene {
 		// player
 		const player = new PlayerPrefab(this, 113, 77);
 		this.add.existing(player);
+
+		// levelLayer
+		const levelLayer = this.add.layer();
+
+		// leftWall
+		const leftWall = new WallPrefab(this, 0, 0);
+		levelLayer.add(leftWall);
+
+		// rightWall
+		const rightWall = new WallPrefab(this, 208, 0);
+		rightWall.flipX = true;
+		rightWall.flipY = false;
+		levelLayer.add(rightWall);
 
 		// playerWithPlatformsCollider
 		this.physics.add.collider(player, platformGroupPrefab.group);

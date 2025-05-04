@@ -1,5 +1,5 @@
 {
-    "id": "d92f7804-eabd-4759-b138-51560a92f89b",
+    "id": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
     "sceneType": "PREFAB",
     "settings": {
         "exportClass": true,
@@ -13,21 +13,16 @@
     },
     "displayList": [
         {
-            "type": "ArcadeSprite",
-            "id": "48b17347-c8f0-48d2-aeb4-6221e3c85f79",
-            "label": "arcadesprite_1",
+            "type": "TileSprite",
+            "id": "1f9d92c3-a37e-44ee-b201-df54d5074511",
+            "label": "tilesprite_1",
             "texture": {
-                "key": "player",
-                "frame": "player-idle-1.png"
+                "key": "wall"
             },
-            "animationPlayMethod": 1,
-            "animationKey": "playerIdle",
-            "animationPreview": true,
-            "up": false,
-            "body.width": 11,
-            "body.height": 44,
-            "body.offset.x": 35,
-            "body.offset.y": 20
+            "originX": 0,
+            "originY": 0,
+            "width": 32,
+            "height": 176
         }
     ],
     "plainObjects": [],
