@@ -6,6 +6,8 @@
 import WallPrefab from "../prefabs/WallPrefab.js";
 import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import PlatformGroupPrefab from "../prefabs/PlatformGroupPrefab.js";
+import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
+import LaunchSceneActionScript from "../scriptnodes/scene/LaunchSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -57,6 +59,12 @@ export default class Level extends Phaser.Scene {
 		const platformGroupPrefab = new PlatformGroupPrefab(this);
 		this.add.existing(platformGroupPrefab);
 
+		// onAwakeActionScript
+		const onAwakeActionScript = new OnAwakeActionScript(this);
+
+		// launchSceneActionScript
+		const launchSceneActionScript = new LaunchSceneActionScript(onAwakeActionScript);
+
 		// lists
 		const movingLevelTileSprites = [rightWall, leftWall];
 		const walls = [rightWall, leftWall];
@@ -69,6 +77,9 @@ export default class Level extends Phaser.Scene {
 
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
+
+		// launchSceneActionScript (prefab fields)
+		launchSceneActionScript.sceneKey = "UI";
 
 		this.player = player;
 		this.platformGroupPrefab = platformGroupPrefab;
@@ -99,6 +110,9 @@ export default class Level extends Phaser.Scene {
 	firstJumpMade
 
 	isGameOver = false;
+	currentScore = 0;
+	maxHeight = 0;
+	startingMaxheight = 0;
 
 	create() {
 		this.editorCreate();
@@ -106,15 +120,19 @@ export default class Level extends Phaser.Scene {
 		this.cameras.main.setDeadzone(this.scale.width);
 		this.firstJumpMade = false;
 		this.isGameOver = false;
+		this.currentScore = 0;
+		this.maxHeight = 0;
+		this.startingMaxheight = 0;
 	}
 
 	update(){
+		this.updateScore();
 		const isTouchingDown = this.player.body.touching.down;
 
 		if (isTouchingDown) {
 			this.handleLanding()
 			if (!this.firstJumpMade) {
-				this.firstJumpMade = true;
+				this.handleFirstJump();
 			}
 		} else if (this.firstJumpMade) {
 			if (this.leftKeyboardKey.isDown) {
@@ -132,6 +150,26 @@ export default class Level extends Phaser.Scene {
 		this.gameOverConditionCheck();
 
 		this.reusePlatforms();
+	}
+
+	updateScore(){
+		if (!this.firstJumpMade) {
+			return;
+		}
+		
+		const distance = Math.floor(Math.abs(this.player.body.bottom));
+
+		if (distance > this.maxHeight) {
+			this.maxHeight = distance;
+			this.currentScore = this.maxHeight - this.startingMaxheight;
+			this.scene.get('UI').updateScoreText(this.currentScore);
+		}
+	}
+
+	handleFirstJump() {
+		this.firstJumpMade = true;
+		const distance = Math.floor(Math.abs(this.player.body.bottom));
+		this.startingMaxheight = distance;
 	}
 
 	handleLanding(){
