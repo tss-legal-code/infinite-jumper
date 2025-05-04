@@ -20,6 +20,9 @@ export default class WallPrefab extends Phaser.GameObjects.TileSprite {
 		/* END-USER-CTR-CODE */
 	}
 
+	/** @type {number} */
+	tileOffsetY = 0;
+
 	/* START-USER-CODE */
 
 	// Write your code here.

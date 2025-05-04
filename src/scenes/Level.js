@@ -63,6 +63,9 @@ export default class Level extends Phaser.Scene {
 		// playerWithPlatformsCollider
 		this.physics.add.collider(player, platformGroupPrefab.group);
 
+		// rightWall (prefab fields)
+		rightWall.tileOffsetY = -120;
+
 		this.player = player;
 		this.leftKeyboardKey = leftKeyboardKey;
 		this.rightKeyboardKey = rightKeyboardKey;
@@ -136,10 +139,10 @@ export default class Level extends Phaser.Scene {
 
 	updateTileSprites(){
 		this.movingLevelTileSprites.forEach((tileSprite) => {
-			tileSprite.tilePositionY = this.player.y * 0.2;
+			tileSprite.tilePositionY = this.player.y * 0.2 + tileSprite.tileOffsetY;
 		})
 	}
-	
+
 
 	/* END-USER-CODE */
 }

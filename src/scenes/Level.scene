@@ -37,10 +37,12 @@
                         "x",
                         "y",
                         "flipX",
-                        "flipY"
+                        "flipY",
+                        "tileOffsetY"
                     ],
                     "label": "rightWall",
                     "displayName": "RIght Wall",
+                    "tileOffsetY": -120,
                     "x": 208,
                     "y": 0,
                     "flipX": true,
