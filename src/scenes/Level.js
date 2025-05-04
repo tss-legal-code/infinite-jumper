@@ -71,6 +71,7 @@ export default class Level extends Phaser.Scene {
 		rightWall.tileOffsetY = -120;
 
 		this.player = player;
+		this.platformGroupPrefab = platformGroupPrefab;
 		this.leftKeyboardKey = leftKeyboardKey;
 		this.rightKeyboardKey = rightKeyboardKey;
 		this.movingLevelTileSprites = movingLevelTileSprites;
@@ -81,6 +82,8 @@ export default class Level extends Phaser.Scene {
 
 	/** @type {PlayerPrefab} */
 	player;
+	/** @type {PlatformGroupPrefab} */
+	platformGroupPrefab;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	leftKeyboardKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
@@ -119,7 +122,9 @@ export default class Level extends Phaser.Scene {
 			}
 		}
 
+		this.updateSpites();
 		this.updateWalls();
+		this.reusePlatforms();
 	}
 
 	handleLanding(){
@@ -145,15 +150,22 @@ export default class Level extends Phaser.Scene {
 		this.player.setVelocityX(0)
 	}
 
-	updateWalls(){
+	updateSpites(){
 		this.movingLevelTileSprites.forEach((tileSprite) => {
 			tileSprite.tilePositionY = this.player.y * 0.2 + tileSprite.tileOffsetY;
 		})
+	}
+
+	updateWalls(){
 		this.walls.forEach((wall) => {
 			// fix wall positioning
 			const x = wall.flipX ? 16 : 0;
 			wall.body.setOffset(x, this.cameras.main.worldView.y);
 		})
+	}
+
+	reusePlatforms(){
+		this.platformGroupPrefab.update();
 	}
 
 
