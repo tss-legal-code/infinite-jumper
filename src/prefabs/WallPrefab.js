@@ -17,6 +17,17 @@ export default class WallPrefab extends Phaser.GameObjects.TileSprite {
 		// Write your code here.
 
 		this.setScrollFactor(0)
+
+		/** @type {Phaser.Scene} */
+		const _scene = scene;
+		_scene.physics.world.enable(this);
+
+		this.body
+			.setImmovable(true)
+			.setAllowGravity(false)
+			.setSize(16, this.height)
+			.setOffset(0,0);
+
 		/* END-USER-CTR-CODE */
 	}
 

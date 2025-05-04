@@ -59,9 +59,13 @@ export default class Level extends Phaser.Scene {
 
 		// lists
 		const movingLevelTileSprites = [rightWall, leftWall];
+		const walls = [rightWall, leftWall];
 
 		// playerWithPlatformsCollider
 		this.physics.add.collider(player, platformGroupPrefab.group);
+
+		// playerWithWallsCollider
+		this.physics.add.collider(player, walls);
 
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
@@ -70,6 +74,7 @@ export default class Level extends Phaser.Scene {
 		this.leftKeyboardKey = leftKeyboardKey;
 		this.rightKeyboardKey = rightKeyboardKey;
 		this.movingLevelTileSprites = movingLevelTileSprites;
+		this.walls = walls;
 
 		this.events.emit("scene-awake");
 	}
@@ -82,6 +87,8 @@ export default class Level extends Phaser.Scene {
 	rightKeyboardKey;
 	/** @type {WallPrefab[]} */
 	movingLevelTileSprites;
+	/** @type {WallPrefab[]} */
+	walls;
 
 	/* START-USER-CODE */
 
@@ -91,6 +98,7 @@ export default class Level extends Phaser.Scene {
 	create() {
 		this.editorCreate();
 		this.cameras.main.startFollow(this.player, false, 0.1, 1, 0.1);
+		this.cameras.main.setDeadzone(this.scale.width);
 		this.firstJumpMade = false;
 	}
 
@@ -111,7 +119,7 @@ export default class Level extends Phaser.Scene {
 			}
 		}
 
-		this.updateTileSprites();
+		this.updateWalls();
 	}
 
 	handleLanding(){
@@ -137,9 +145,14 @@ export default class Level extends Phaser.Scene {
 		this.player.setVelocityX(0)
 	}
 
-	updateTileSprites(){
+	updateWalls(){
 		this.movingLevelTileSprites.forEach((tileSprite) => {
 			tileSprite.tilePositionY = this.player.y * 0.2 + tileSprite.tileOffsetY;
+		})
+		this.walls.forEach((wall) => {
+			// fix wall positioning
+			const x = wall.flipX ? 16 : 0;
+			wall.body.setOffset(x, this.cameras.main.worldView.y);
 		})
 	}
 
