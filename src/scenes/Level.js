@@ -128,9 +128,10 @@ export default class Level extends Phaser.Scene {
 
 		this.updateSpites();
 		this.updateWalls();
-		this.reusePlatforms();
 
 		this.gameOverConditionCheck();
+
+		this.reusePlatforms();
 	}
 
 	handleLanding(){
@@ -182,11 +183,25 @@ export default class Level extends Phaser.Scene {
 
 		const isPlayerTooLow = this.player.y > this.platformGroupPrefab.lowestPlatformY;
 
-		if (isPlayerTooLow) {
-			this.isGameOver = true;
-			this.player.setVelocityY(15);
-			this.player.play('playerHurt');
+		if (!isPlayerTooLow) {
+			return
 		}
+
+		this.isGameOver = true;
+		this.player.setVelocityY(15);
+		this.player.play('playerHurt');
+
+		const wipeFx = this.player.postFX.addWipe(0.1, 0, 1);
+
+		this.tweens.add({
+			targets: wipeFx,
+			progress: 1,
+			duration: 3000,
+			onComplete: () => {
+				this.player.body.enable = false;
+				console.log("GAME OVER!")
+			}
+		})
 	}
 
 
