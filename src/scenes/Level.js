@@ -265,7 +265,10 @@ export default class Level extends Phaser.Scene {
 			duration: 3000,
 			onComplete: () => {
 				this.player.body.enable = false;
-				console.log("GAME OVER!")
+				this.registry.set('score', this.currentScore);
+				this.scene.stop('UI');
+				this.scene.start('GameOver');
+				// console.log("GAME OVER!")
 			}
 		})
 	}
