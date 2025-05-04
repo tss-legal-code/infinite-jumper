@@ -18,6 +18,8 @@ export default class Level extends Phaser.Scene {
 
 		this.jumpVelocity = 350;
 		this.sideVelocity = 100;
+		this.firstJumpMade = false;
+
 		/* END-USER-CTR-CODE */
 	}
 
@@ -57,18 +59,23 @@ export default class Level extends Phaser.Scene {
 
 	/* START-USER-CODE */
 
-	// Write more your code here
+	/** @type Boolean */
+	firstJumpMade
 
 	create() {
 		this.editorCreate();
 		this.cameras.main.startFollow(this.player, false, 0.1, 1, 0.1);
+		this.firstJumpMade = false;
 	}
 
 	update(){
 		const isTouchingDown = this.player.body.touching.down
 		if (isTouchingDown) {
 			this.handlePlayerTouchDown()
-		} else {
+			if (!this.firstJumpMade) {
+				this.firstJumpMade = true;
+			}
+		} else if (this.firstJumpMade) {
 			if (this.leftKeyboardKey.isDown) {
 				this.handleMoveLeft()
 			} else if (this.rightKeyboardKey.isDown) {
