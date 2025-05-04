@@ -20,19 +20,16 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 			// maxSize: 30
 		})
 
-		this.platfowmMinX = 10;
+		this.platfowmMinX = 50;
 		this.platfowmMaxX = 200;
-
-		this.platfowmMinOffsetY = 50;
+		this.platfowmMinOffsetY = 100;
 		this.platfowmMaxOffsetY = 140;
-		// this.platfowmMinOffsetY = 10;
-		// this.platfowmMaxOffsetY = 40;
-
-
-		this.initPlatforms();
 
 		this.maxPlatformDistance = scene.scale.height * 3;
 		this.lowestPlatformY = 0;
+		this.highestPlatformY = 0;
+
+		this.initPlatforms();
 		/* END-USER-CTR-CODE */
 	}
 
@@ -46,6 +43,9 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 
 	/** @type number */
 	lowestPlatformY
+
+	/** @type number */
+	highestPlatformY
 
 	update(){
 		const scrollY = this.scene.cameras.main.scrollY;
@@ -65,21 +65,28 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 			reusables.push(child);
 		})
 
-		let offsetY = 0;
-
 		reusables.forEach((child)=> {
-			child.x = Phaser.Math.Between(this.platfowmMinX, this.platfowmMaxX),
-			offsetY += Phaser.Math.Between(this.platfowmMinOffsetY, this.platfowmMaxOffsetY);
-			child.y = scrollY - offsetY;
+			child.x = this.getRandomX();
+			this.highestPlatformY -= this.getRandomY();
+			child.y = this.highestPlatformY;
 		})
 	}
 
+	getRandomX(){
+		return Phaser.Math.Between(this.platfowmMinX, this.platfowmMaxX)
+	}
+
+	getRandomY(){
+		return Phaser.Math.Between(this.platfowmMinOffsetY, this.platfowmMaxOffsetY);
+	}
+
 	initPlatforms() {
-		this.group.get(120, 0);
+		this.group.get(120, this.highestPlatformY);
 
 		for (let i = 0; i < 5; i +=1) {
-			const x = Phaser.Math.Between(this.platfowmMinX, this.platfowmMaxX);
-			const y = -this.platfowmMaxOffsetY * i;
+			const x = this.getRandomX();
+			this.highestPlatformY -= this.getRandomY();
+			const y = this.highestPlatformY;
 			this.group.get(x, y);
 		}
 	}
