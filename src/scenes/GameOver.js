@@ -5,6 +5,8 @@
 
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
+import TimeEventActionScript from "../scriptnodes/timer/TimeEventActionScript.js";
+import StartSceneActionScript from "../scriptnodes/scene/StartSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -45,8 +47,27 @@ export default class GameOver extends Phaser.Scene {
 		// fadeEffectCameraActionScript
 		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(onAwakeActionScript);
 
+		// timeEventActionScript
+		const timeEventActionScript = new TimeEventActionScript(onAwakeActionScript);
+
+		// fadeEffectCameraActionScript_1
+		const fadeEffectCameraActionScript_1 = new FadeEffectCameraActionScript(timeEventActionScript);
+
+		// startSceneActionScript
+		const startSceneActionScript = new StartSceneActionScript(fadeEffectCameraActionScript_1);
+
 		// fadeEffectCameraActionScript (prefab fields)
 		fadeEffectCameraActionScript.duration = 500;
+
+		// timeEventActionScript (prefab fields)
+		timeEventActionScript.delay = 3000;
+
+		// fadeEffectCameraActionScript_1 (prefab fields)
+		fadeEffectCameraActionScript_1.duration = 500;
+		fadeEffectCameraActionScript_1.fadeEvent = "camerafadeoutcomplete";
+
+		// startSceneActionScript (prefab fields)
+		startSceneActionScript.sceneKey = "Level";
 
 		this.scoreValueGameObject = scoreValueGameObject;
 
