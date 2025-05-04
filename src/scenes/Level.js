@@ -152,24 +152,29 @@ export default class Level extends Phaser.Scene {
 		this.reusePlatforms();
 	}
 
+	getPlayerDistance() {
+		return Math.floor(Math.abs(this.player.body.bottom));
+	}
+
 	updateScore(){
 		if (!this.firstJumpMade) {
 			return;
 		}
-		
-		const distance = Math.floor(Math.abs(this.player.body.bottom));
 
-		if (distance > this.maxHeight) {
-			this.maxHeight = distance;
-			this.currentScore = this.maxHeight - this.startingMaxheight;
-			this.scene.get('UI').updateScoreText(this.currentScore);
+		const distance = this.getPlayerDistance();
+
+		if (distance < this.maxHeight) {
+			return
 		}
+
+		this.maxHeight = distance;
+		this.currentScore = Math.floor((this.maxHeight - this.startingMaxheight) / 10);
+		this.scene.get('UI').updateScoreText(this.currentScore);
 	}
 
 	handleFirstJump() {
 		this.firstJumpMade = true;
-		const distance = Math.floor(Math.abs(this.player.body.bottom));
-		this.startingMaxheight = distance;
+		this.startingMaxheight = this.getPlayerDistance();
 	}
 
 	handleLanding(){
