@@ -20,9 +20,11 @@ export default class PlatformGroupPrefab extends Phaser.GameObjects.Layer {
 			// maxSize: 30
 		})
 
+		this.group.get(90, 150);
+
 		for (let i = 0; i < 5; i +=1) {
 			const x = Phaser.Math.Between(10, 200);
-			const y = -20 * i + 150;
+			const y = -150 * i + 150;
 			this.group.get(x, y);
 		}
 		/* END-USER-CTR-CODE */
