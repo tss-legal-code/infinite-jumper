@@ -3,6 +3,8 @@
 
 /* START OF COMPILED CODE */
 
+import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
+import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -36,6 +38,15 @@ export default class GameOver extends Phaser.Scene {
 		scoreValueGameObject.setOrigin(0.5, 0.5);
 		scoreValueGameObject.text = "0";
 		scoreValueGameObject.setStyle({ "fontFamily": "PressStart2P-Regular", "fontSize": "10px" });
+
+		// onAwakeActionScript
+		const onAwakeActionScript = new OnAwakeActionScript(this);
+
+		// fadeEffectCameraActionScript
+		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(onAwakeActionScript);
+
+		// fadeEffectCameraActionScript (prefab fields)
+		fadeEffectCameraActionScript.duration = 500;
 
 		this.scoreValueGameObject = scoreValueGameObject;
 

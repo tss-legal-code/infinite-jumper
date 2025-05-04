@@ -51,6 +51,22 @@
             "text": "0",
             "fontFamily": "PressStart2P-Regular",
             "fontSize": "10px"
+        },
+        {
+            "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
+            "id": "2491f1f8-2a39-404f-be1c-012e1385008b",
+            "label": "onAwakeActionScript",
+            "list": [
+                {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "452f3406-3d4d-45f5-9ed9-e8979905e200",
+                    "unlock": [
+                        "duration"
+                    ],
+                    "label": "fadeEffectCameraActionScript",
+                    "duration": 500
+                }
+            ]
         }
     ],
     "plainObjects": [],
