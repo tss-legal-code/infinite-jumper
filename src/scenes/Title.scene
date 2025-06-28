@@ -1,0 +1,154 @@
+{
+    "id": "cbf524d6-2c5c-4a82-a7ea-bd8bcaf958ab",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Title",
+        "borderWidth": 240,
+        "borderHeight": 176
+    },
+    "displayList": [
+        {
+            "type": "Layer",
+            "id": "d4d17e89-ca5b-4580-bc3f-5e96216e3842",
+            "label": "levelLayer",
+            "displayName": "Level Layer",
+            "list": [
+                {
+                    "prefabId": "13c1e742-2919-468d-bd37-8673440ce531",
+                    "id": "c983d49a-7aae-4445-9d42-cd1a48aee6ab",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "backgroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "97cfafd1-7002-4758-b24b-d1f5de583d20",
+                    "id": "89ec1331-3ad5-4c53-b06b-c409a138d913",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "foregroundPrefab",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
+                    "id": "201021df-22a7-42e6-b1a8-2516123c6c63",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "leftWall",
+                    "displayName": "Left Wall",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "5fee4cc6-8932-4126-9043-0e7b160bac6c",
+                    "id": "6d4c594b-1fbf-4541-ba5e-e1bb5fc09da1",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "flipX",
+                        "flipY",
+                        "tileOffsetY",
+                        "tilePositionX",
+                        "tilePositionY"
+                    ],
+                    "label": "rightWall",
+                    "displayName": "RIght Wall",
+                    "tileOffsetY": -120,
+                    "x": 208,
+                    "y": 0,
+                    "flipX": true,
+                    "flipY": false,
+                    "tilePositionX": 0,
+                    "tilePositionY": -120
+                },
+                {
+                    "type": "Image",
+                    "id": "312ccce3-f82d-47b6-8134-b55e5c7af529",
+                    "label": "ground",
+                    "texture": {
+                        "key": "ground"
+                    },
+                    "y": 144,
+                    "originX": 0,
+                    "originY": 0
+                },
+                {
+                    "type": "Text",
+                    "id": "ca168619-e348-4ba6-b0f9-00d202db05b6",
+                    "label": "titleTextGamObject",
+                    "displayName": "Title Text",
+                    "x": 120,
+                    "y": 40,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "Infinite\nCave\nEscape",
+                    "lineSpacing": 2,
+                    "align": "center",
+                    "fontFamily": "PressStart2P-Regular",
+                    "color": "#00ace1ff",
+                    "stroke": "#0ff",
+                    "shadow.offsetX": 3,
+                    "shadow.offsetY": 1,
+                    "shadow.stroke": true,
+                    "shadow.fill": true
+                },
+                {
+                    "type": "Text",
+                    "id": "00ee5e62-2be2-463e-98d0-ede70f672695",
+                    "label": "clickToPlayTextGameObject",
+                    "displayName": "Click To Play",
+                    "x": 120,
+                    "y": 100,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "click to Play",
+                    "fontFamily": "PressStart2P-Regular",
+                    "fontSize": "11px",
+                    "color": "#59006eff",
+                    "stroke": "#000000"
+                }
+            ]
+        },
+        {
+            "type": "Layer",
+            "id": "e24a3d13-65a5-45c3-80f1-e73f55c6ee7d",
+            "label": "playerLayer",
+            "displayName": "Player Layer",
+            "list": [
+                {
+                    "prefabId": "d92f7804-eabd-4759-b138-51560a92f89b",
+                    "id": "1dada4f0-3609-40dd-90be-761780aa166f",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "player",
+                    "displayName": "Player",
+                    "scope": "CLASS",
+                    "x": 120,
+                    "y": 136
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
