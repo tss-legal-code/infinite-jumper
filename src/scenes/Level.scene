@@ -105,6 +105,17 @@
             "label": "onAwakeActionScript",
             "list": [
                 {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "9c640b05-527e-4aa6-b27e-19c6a4abf83e",
+                    "unlock": [
+                        "duration",
+                        "fadeEvent"
+                    ],
+                    "label": "fadeEffectCameraActionScript_1",
+                    "duration": 500,
+                    "fadeEvent": "camerafadeincomplete"
+                },
+                {
                     "prefabId": "0ed1159f-ee3d-4ce9-82da-e76768c045b5",
                     "id": "9edd763f-04c8-455b-ab90-eedfa73fd686",
                     "unlock": [

@@ -152,6 +152,15 @@ export default class Title extends Phaser.Scene {
 
     this.editorCreate();
 	this.player.body.enable = false;
+
+	const glowFX = this.player.postFX.addGlow(0x00ffff, 3, 0 , false, 0.1, 5);
+	this.tweens.add({
+		targets: glowFX,
+		outerStrength: 1, 
+		duration: 800,
+		yoyo: true,
+		repeat: -1,
+	})
   }
 
   startGame(){
