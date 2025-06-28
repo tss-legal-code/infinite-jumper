@@ -142,6 +142,22 @@
                     "y": 136
                 }
             ]
+        },
+        {
+            "prefabId": "7bf8a19d-1211-4b59-bb38-b034085b171f",
+            "id": "72946faa-cf16-4b75-b176-b0f96862b05c",
+            "label": "onAwakeActionScript",
+            "list": [
+                {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "4ec1e01f-0529-450b-87d1-e5e6e631df93",
+                    "unlock": [
+                        "duration"
+                    ],
+                    "label": "fadeEffectCameraActionScript",
+                    "duration": 500
+                }
+            ]
         }
     ],
     "plainObjects": [],

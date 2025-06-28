@@ -7,6 +7,8 @@ import BackgroundPrefab from "../prefabs/BackgroundPrefab.js";
 import ForegroundPrefab from "../prefabs/ForegroundPrefab.js";
 import WallPrefab from "../prefabs/WallPrefab.js";
 import PlayerPrefab from "../prefabs/PlayerPrefab.js";
+import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
+import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -73,8 +75,17 @@ export default class Title extends Phaser.Scene {
 		const player = new PlayerPrefab(this, 120, 136);
 		playerLayer.add(player);
 
+		// onAwakeActionScript
+		const onAwakeActionScript = new OnAwakeActionScript(this);
+
+		// fadeEffectCameraActionScript
+		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(onAwakeActionScript);
+
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
+
+		// fadeEffectCameraActionScript (prefab fields)
+		fadeEffectCameraActionScript.duration = 500;
 
 		this.player = player;
 
@@ -91,6 +102,7 @@ export default class Title extends Phaser.Scene {
   create() {
 
     this.editorCreate();
+	this.player.body.enable = false;
   }
 
   /* END-USER-CODE */
