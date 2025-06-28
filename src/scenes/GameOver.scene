@@ -93,7 +93,7 @@
                                         "sceneKey"
                                     ],
                                     "label": "startSceneActionScript",
-                                    "sceneKey": "Level"
+                                    "sceneKey": "Title"
                                 }
                             ]
                         }

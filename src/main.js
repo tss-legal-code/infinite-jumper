@@ -11,7 +11,7 @@ window.addEventListener('load', function () {
 		width: 240,
 		height: 176,
 		type: Phaser.AUTO,
-        backgroundColor: "#242424",
+        backgroundColor: "#00000000",
 		scale: {
 			mode: Phaser.Scale.FIT,
 			autoCenter: Phaser.Scale.CENTER_BOTH
@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
 					x: 0,
 					y: 300 
 				},
-				debug: 1,
+				debug: 0,
 			},
 		}
 	});

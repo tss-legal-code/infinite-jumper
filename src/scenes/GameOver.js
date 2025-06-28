@@ -67,7 +67,7 @@ export default class GameOver extends Phaser.Scene {
 		fadeEffectCameraActionScript_1.fadeEvent = "camerafadeoutcomplete";
 
 		// startSceneActionScript (prefab fields)
-		startSceneActionScript.sceneKey = "Level";
+		startSceneActionScript.sceneKey = "Title";
 
 		this.scoreValueGameObject = scoreValueGameObject;
 

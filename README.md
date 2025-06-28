@@ -1,6 +1,7 @@
 # Basic JavaScript project template for Phaser Editor v4.
 
-This is a Phaser Editor v4 project template.
+This is a Phaser Editor v4 project template extended by following instructions from 
+https://www.youtube.com/watch?v=RIAjbuoYT3I
 
 ## Configuration
 
