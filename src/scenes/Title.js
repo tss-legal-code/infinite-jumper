@@ -148,13 +148,15 @@ export default class Title extends Phaser.Scene {
 
   // Write your code here
 
+  glowTween;
+
   create() {
 
     this.editorCreate();
 	this.player.body.enable = false;
 
 	const glowFX = this.player.postFX.addGlow(0x00ffff, 3, 0 , false, 0.1, 5);
-	this.tweens.add({
+	this.glowTween = this.tweens.add({
 		targets: glowFX,
 		outerStrength: 1, 
 		duration: 800,
@@ -168,6 +170,8 @@ export default class Title extends Phaser.Scene {
 	this.player.setFrame('player-duck.png');
 	this.time.delayedCall(1000, ()=>{
 		this.player.play('playerIdle');
+		this.glowTween.destroy();
+		this.player.postFX.clear();
 		this.player.body.enable = true;
 		this.player.body.velocity.y = -1000; 
 
