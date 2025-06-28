@@ -10,6 +10,8 @@ import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 import TweenActionScript from "../scriptnodes/animation/TweenActionScript.js";
+import SceneOnPointerDownActionScript from "../scriptnodes/scene/SceneOnPointerDownActionScript.js";
+import StartSceneActionScript from "../scriptnodes/scene/StartSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -85,6 +87,12 @@ export default class Title extends Phaser.Scene {
 		// tweenActionScript
 		const tweenActionScript = new TweenActionScript(onAwakeActionScript);
 
+		// sceneOnPointerDownActionScript
+		const sceneOnPointerDownActionScript = new SceneOnPointerDownActionScript(onAwakeActionScript);
+
+		// startSceneActionScript
+		const startSceneActionScript = new StartSceneActionScript(sceneOnPointerDownActionScript);
+
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
 
@@ -100,6 +108,12 @@ export default class Title extends Phaser.Scene {
 		tweenActionScript.loopDelay = 300;
 		tweenActionScript.tweenProperty = "alpha";
 		tweenActionScript.tweenPropertyValue = 0.2;
+
+		// sceneOnPointerDownActionScript (prefab fields)
+		sceneOnPointerDownActionScript.once = true;
+
+		// startSceneActionScript (prefab fields)
+		startSceneActionScript.sceneKey = "Level";
 
 		this.player = player;
 

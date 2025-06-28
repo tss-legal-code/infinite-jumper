@@ -179,6 +179,26 @@
                     "loopDelay": 300,
                     "tweenProperty": "alpha",
                     "tweenPropertyValue": "0.2"
+                },
+                {
+                    "prefabId": "e8e75fbe-17a0-49df-ae3c-964d0ecbf8f9",
+                    "id": "1a8c9229-9290-4057-be87-0c3a7a65fac0",
+                    "unlock": [
+                        "once"
+                    ],
+                    "label": "sceneOnPointerDownActionScript",
+                    "once": true,
+                    "list": [
+                        {
+                            "prefabId": "6b1b396b-83fa-4b7a-8360-c7e156fc0f24",
+                            "id": "6d165b00-68bc-4efc-9a58-84777e8177eb",
+                            "unlock": [
+                                "sceneKey"
+                            ],
+                            "label": "startSceneActionScript",
+                            "sceneKey": "Level"
+                        }
+                    ]
                 }
             ]
         }
