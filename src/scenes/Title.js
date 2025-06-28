@@ -9,6 +9,7 @@ import WallPrefab from "../prefabs/WallPrefab.js";
 import PlayerPrefab from "../prefabs/PlayerPrefab.js";
 import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
+import TweenActionScript from "../scriptnodes/animation/TweenActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -81,11 +82,24 @@ export default class Title extends Phaser.Scene {
 		// fadeEffectCameraActionScript
 		const fadeEffectCameraActionScript = new FadeEffectCameraActionScript(onAwakeActionScript);
 
+		// tweenActionScript
+		const tweenActionScript = new TweenActionScript(onAwakeActionScript);
+
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
 
 		// fadeEffectCameraActionScript (prefab fields)
 		fadeEffectCameraActionScript.duration = 500;
+
+		// tweenActionScript (prefab fields)
+		tweenActionScript.target = clickToPlayTextGameObject;
+		tweenActionScript.duration = 300;
+		tweenActionScript.yoyo = true;
+		tweenActionScript.repeat = -1;
+		tweenActionScript.delay = 300;
+		tweenActionScript.loopDelay = 300;
+		tweenActionScript.tweenProperty = "alpha";
+		tweenActionScript.tweenPropertyValue = 0.2;
 
 		this.player = player;
 

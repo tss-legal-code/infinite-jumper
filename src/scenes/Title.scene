@@ -156,6 +156,29 @@
                     ],
                     "label": "fadeEffectCameraActionScript",
                     "duration": 500
+                },
+                {
+                    "prefabId": "60f765a5-206f-4094-911b-c11367630985",
+                    "id": "751269d7-c747-4ac2-bd10-9b7faefb9ad0",
+                    "unlock": [
+                        "target",
+                        "yoyo",
+                        "tweenProperty",
+                        "tweenPropertyValue",
+                        "duration",
+                        "repeat",
+                        "delay",
+                        "loopDelay"
+                    ],
+                    "label": "tweenActionScript",
+                    "target": "clickToPlayTextGameObject",
+                    "duration": 300,
+                    "yoyo": true,
+                    "repeat": -1,
+                    "delay": 300,
+                    "loopDelay": 300,
+                    "tweenProperty": "alpha",
+                    "tweenPropertyValue": "0.2"
                 }
             ]
         }
