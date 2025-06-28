@@ -11,6 +11,8 @@ import OnAwakeActionScript from "../scriptnodes/utils/OnAwakeActionScript.js";
 import FadeEffectCameraActionScript from "../scriptnodes/camera/FadeEffectCameraActionScript.js";
 import TweenActionScript from "../scriptnodes/animation/TweenActionScript.js";
 import SceneOnPointerDownActionScript from "../scriptnodes/scene/SceneOnPointerDownActionScript.js";
+import CallbackActionScript from "../scriptnodes/utils/CallbackActionScript.js";
+import TimeEventActionScript from "../scriptnodes/timer/TimeEventActionScript.js";
 import StartSceneActionScript from "../scriptnodes/scene/StartSceneActionScript.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
@@ -90,8 +92,17 @@ export default class Title extends Phaser.Scene {
 		// sceneOnPointerDownActionScript
 		const sceneOnPointerDownActionScript = new SceneOnPointerDownActionScript(onAwakeActionScript);
 
+		// callbackActionScript
+		const callbackActionScript = new CallbackActionScript(sceneOnPointerDownActionScript);
+
+		// timeEventActionScriptForSceneTransition
+		const timeEventActionScriptForSceneTransition = new TimeEventActionScript(this);
+
+		// fadeEffectCameraActionScript_1
+		const fadeEffectCameraActionScript_1 = new FadeEffectCameraActionScript(timeEventActionScriptForSceneTransition);
+
 		// startSceneActionScript
-		const startSceneActionScript = new StartSceneActionScript(sceneOnPointerDownActionScript);
+		const startSceneActionScript = new StartSceneActionScript(fadeEffectCameraActionScript_1);
 
 		// rightWall (prefab fields)
 		rightWall.tileOffsetY = -120;
@@ -112,16 +123,26 @@ export default class Title extends Phaser.Scene {
 		// sceneOnPointerDownActionScript (prefab fields)
 		sceneOnPointerDownActionScript.once = true;
 
+		// callbackActionScript (prefab fields)
+		callbackActionScript.callback = () => {this.startGame()};
+
+		// fadeEffectCameraActionScript_1 (prefab fields)
+		fadeEffectCameraActionScript_1.duration = 500;
+		fadeEffectCameraActionScript_1.fadeEvent = "camerafadeoutcomplete";
+
 		// startSceneActionScript (prefab fields)
 		startSceneActionScript.sceneKey = "Level";
 
 		this.player = player;
+		this.timeEventActionScriptForSceneTransition = timeEventActionScriptForSceneTransition;
 
 		this.events.emit("scene-awake");
 	}
 
 	/** @type {PlayerPrefab} */
 	player;
+	/** @type {TimeEventActionScript} */
+	timeEventActionScriptForSceneTransition;
 
 	/* START-USER-CODE */
 
@@ -131,6 +152,18 @@ export default class Title extends Phaser.Scene {
 
     this.editorCreate();
 	this.player.body.enable = false;
+  }
+
+  startGame(){
+	this.player.stop();
+	this.player.setFrame('player-duck.png');
+	this.time.delayedCall(1000, ()=>{
+		this.player.play('playerIdle');
+		this.player.body.enable = true;
+		this.player.body.velocity.y = -1000; 
+
+		this.timeEventActionScriptForSceneTransition.execute();
+	})
   }
 
   /* END-USER-CODE */

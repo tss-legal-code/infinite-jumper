@@ -190,8 +190,39 @@
                     "once": true,
                     "list": [
                         {
+                            "prefabId": "e29bc630-dabe-4a8c-97e0-45ccb875b877",
+                            "id": "c8093670-d2a0-49ff-91ce-c08016183e25",
+                            "unlock": [
+                                "callback"
+                            ],
+                            "label": "callbackActionScript",
+                            "callback": "() => {this.startGame()}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "prefabId": "34cde368-8bd4-4596-97fc-47c6825699b1",
+            "id": "e2be7c41-3adb-4046-be36-ab7477cea2b0",
+            "label": "timeEventActionScriptForSceneTransition",
+            "displayName": "Start Next Scene Script",
+            "scope": "CLASS",
+            "list": [
+                {
+                    "prefabId": "26d6c86f-1f9a-4dc9-9d2e-f64a7fbbbb28",
+                    "id": "42e74281-5719-42e4-a895-e83ea146c260",
+                    "unlock": [
+                        "duration",
+                        "fadeEvent"
+                    ],
+                    "label": "fadeEffectCameraActionScript_1",
+                    "duration": 500,
+                    "fadeEvent": "camerafadeoutcomplete",
+                    "list": [
+                        {
                             "prefabId": "6b1b396b-83fa-4b7a-8360-c7e156fc0f24",
-                            "id": "6d165b00-68bc-4efc-9a58-84777e8177eb",
+                            "id": "db5702b5-5354-4736-b57e-7781439902f5",
                             "unlock": [
                                 "sceneKey"
                             ],
