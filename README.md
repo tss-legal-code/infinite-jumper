@@ -2,6 +2,7 @@
 
 This is a Phaser Editor v4 project template extended by following instructions from 
 https://www.youtube.com/watch?v=RIAjbuoYT3I
+https://github.com/devshareacademy/phaser-editor-infinite-jumper/tree/finished-video-code
 
 ## Configuration
 
